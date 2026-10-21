@@ -1,0 +1,159 @@
+
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.ui-button--sm {
+  min-height: 36px;
+  padding: 8px 12px;
+  font-size: var(--font-size-sm);
+}
+
+.ui-button--md {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: var(--font-size-base);
+}
+
+.ui-button--lg {
+  min-height: 50px;
+  padding: 12px 24px;
+  font-size: var(--font-size-base);
+}
+
+/* Primary */
+.ui-button--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.ui-button--primary:not(:disabled):hover {
+  background: var(--color-primary-hover);
+}
+
+.ui-button--primary:not(:disabled):active {
+  background: var(--color-primary-active);
+  transform: scale(0.98);
+}
+
+/* Secondary */
+.ui-button--secondary {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-active);
+}
+
+.ui-button--secondary:not(:disabled):hover {
+  background: #dfd8fa;
+}
+
+.ui-button--secondary:not(:disabled):active {
+  background: #cfc5f4;
+  transform: scale(0.98);
+}
+
+/* Outline */
+.ui-button--outline {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.ui-button--outline:not(:disabled):hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
+}
+
+.ui-button--outline:not(:disabled):active {
+  background: var(--color-primary-soft);
+  transform: scale(0.98);
+}
+
+/* Danger */
+.ui-button--danger {
+  background: var(--color-error);
+  color: #fff;
+}
+
+.ui-button--danger:not(:disabled):hover {
+  background: #951a2c;
+}
+
+.ui-button--danger:not(:disabled):active {
+  background: #781421;
+  transform: scale(0.98);
+}
+
+/* Accessibility */
+.ui-button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--color-surface);
+}
+
+.ui-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ui-button--loading {
+  cursor: wait;
+}
+
+/* Loading spinner */
+.ui-button__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ui-button-spin 700ms linear infinite;
+}
+
+@keyframes ui-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-button {
+    transition: none;
+  }
+
+  .ui-button__spinner {
+    animation-duration: 1.5s;
+  }
+}
+
+/* Storybook-only visual state previews */
+.button-story--hover .ui-button--primary {
+  background: var(--color-primary-hover);
+}
+
+.button-story--active .ui-button--primary {
+  background: var(--color-primary-active);
+  transform: scale(0.98);
+}
+
+.button-story--focus .ui-button {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
