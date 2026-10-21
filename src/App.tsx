@@ -10,6 +10,7 @@ import { AppLayout } from './components/layout/AppLayout';
 import { TodayPage } from './pages/TodayPage';
 import { PlaceholderPage } from './pages/PlaceholderPage';
 import { SubjectsPage } from './pages/SubjectsPage';
+import { TasksPage } from './pages/TasksPage';
 
 function App() {
   return (
@@ -25,13 +26,8 @@ function App() {
             />
 
             <Route
-              path="tasks"
-              element={
-                <PlaceholderPage
-                  title="Мої завдання"
-                  description="Створення, редагування та відстеження завдань."
-                />
-              }
+                path="tasks"
+                element={<TasksPage />}
             />
 
             <Route
