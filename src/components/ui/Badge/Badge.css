@@ -1,0 +1,40 @@
+
+.uf-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-height: 24px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: normal;
+  text-align: center;
+}
+
+.uf-badge--neutral {
+  background: #e9eaf1;
+  color: #44465c;
+}
+
+.uf-badge--primary {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-active);
+}
+
+.uf-badge--success {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.uf-badge--warning {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+.uf-badge--danger {
+  background: var(--color-error-soft);
+  color: var(--color-error);
+}
