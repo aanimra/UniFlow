@@ -1,8 +1,19 @@
+/* ============================================
+   UNIFLOW — TODAY DASHBOARD
+   ============================================ */
+
+/* PAGE LAYOUT */
+
 .uf-dashboard {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  min-width: 0;
 }
+
+/* ============================================
+   PAGE HEADER
+   ============================================ */
 
 .uf-dashboard__heading {
   display: flex;
@@ -26,19 +37,31 @@
 .uf-dashboard__subtitle {
   margin-bottom: 0;
   color: var(--color-text-secondary);
+  line-height: 1.6;
 }
 
 .uf-dashboard__date {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 9px;
   padding: 12px 16px;
+
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+
   color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
 }
+
+.uf-dashboard__date svg {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+/* ============================================
+   STATISTICS
+   ============================================ */
 
 .uf-dashboard__stats {
   display: grid;
@@ -63,43 +86,78 @@
 }
 
 .uf-stat strong {
-  font-size: 34px;
-  line-height: 1;
   color: var(--color-text);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
+
+/* ============================================
+   OVERDUE NOTICE
+   ============================================ */
 
 .uf-dashboard__notice {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+
   padding: 14px 18px;
+
   background: var(--color-error-soft);
+  border: 1px solid var(--color-error);
   border-radius: var(--radius-md);
+
   color: var(--color-error);
   font-size: var(--font-size-sm);
+  line-height: 1.5;
 }
+
+/* ============================================
+   MAIN COLUMNS
+   ============================================ */
 
 .uf-dashboard__columns {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 20px;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(0, 1fr);
+
   align-items: start;
+  gap: 20px;
 }
 
 .uf-dashboard__columns > section {
   min-width: 0;
 }
 
+/* ============================================
+   FOCUS TODAY HEADING
+   ============================================ */
+
 .uf-dashboard__section-icon {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 16px;
+
   color: var(--color-primary);
   font-size: var(--font-size-sm);
   font-weight: 600;
-  margin-bottom: 16px;
 }
+
+.uf-dashboard__reorder-hint {
+  margin: 0 0 16px;
+
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: 1.6;
+}
+
+/* ============================================
+   TASK LIST
+   ============================================ */
 
 .uf-task-list,
 .uf-upcoming-list {
@@ -110,29 +168,61 @@
 
 .uf-task-row {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 16px;
+
   padding: 16px;
-  background: var(--color-background);
+
+  background: var(--color-bg, #f7f8fc);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
 
 .uf-task-row__info {
-  flex: 1;
   min-width: 0;
+  flex: 1;
 }
 
-.uf-task-row__info h3 {
-  margin-bottom: 5px;
-  font-size: var(--font-size-base);
+.uf-task-row__heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
-.uf-task-row__info p {
-  margin-bottom: 12px;
+.uf-task-row__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-soft);
+
+  color: var(--color-primary-active);
   font-size: var(--font-size-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.uf-task-row__heading h3 {
+  min-width: 0;
+  margin: 2px 0 0;
+
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.uf-task-row__info > p {
+  margin: 0 0 12px;
+
   color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
 }
 
 .uf-task-row__metadata {
@@ -140,54 +230,213 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  font-size: var(--font-size-xs);
+
   color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
 }
+
+/* ============================================
+   FOCUS TODAY ACTIONS
+   ============================================ */
+
+.uf-task-row__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ============================================
+   MANUAL TASK REORDERING
+   ============================================ */
+
+.uf-dashboard__reorder {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.uf-dashboard__reorder-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface);
+  color: var(--color-primary-active);
+
+  cursor: pointer;
+
+  transition:
+    background 150ms ease,
+    border-color 150ms ease;
+}
+
+.uf-dashboard__reorder-button:hover:not(:disabled) {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+}
+
+.uf-dashboard__reorder-button:active:not(:disabled) {
+  background: var(--color-primary-soft);
+}
+
+.uf-dashboard__reorder-button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.uf-dashboard__reorder-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   START FOCUS LINK
+   ============================================ */
+
+.uf-dashboard__focus-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+  padding: 9px 14px;
+
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+
+  background: var(--color-primary);
+  color: #ffffff;
+
+  text-align: center;
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.3;
+
+  transition:
+    background 150ms ease,
+    border-color 150ms ease;
+}
+
+.uf-dashboard__focus-link:hover {
+  background: var(--color-primary-hover, #4937b0);
+  border-color: var(--color-primary-hover, #4937b0);
+  color: #ffffff;
+}
+
+.uf-dashboard__focus-link:active {
+  background: var(--color-primary-active, #392a8e);
+  color: #ffffff;
+}
+
+.uf-dashboard__focus-link:focus-visible {
+  outline: 3px solid var(--color-primary-active, #392a8e);
+  outline-offset: 3px;
+}
+
+/* ============================================
+   UPCOMING DEADLINES
+   ============================================ */
 
 .uf-upcoming-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 14px;
+
   padding: 12px 0;
   border-bottom: 1px solid var(--color-border);
 }
 
 .uf-upcoming-item:last-child {
-  border-bottom: none;
+  border-bottom: 0;
 }
 
-.uf-upcoming-item div {
+.uf-upcoming-item > div {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  flex: 1;
   min-width: 0;
+  gap: 6px;
 }
 
 .uf-upcoming-item strong {
-  overflow-wrap: anywhere;
   font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
 }
 
-.uf-upcoming-item span:not(.uf-badge) {
+.uf-upcoming-item > div > span {
   color: var(--color-text-secondary);
   font-size: var(--font-size-xs);
 }
+
+/* ============================================
+   EMPTY STATES
+   ============================================ */
 
 .uf-dashboard__empty {
   margin: 0;
   padding: 18px;
-  background: var(--color-background);
+
+  background: var(--color-bg, #f7f8fc);
   border-radius: var(--radius-md);
+
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
+  line-height: 1.6;
 }
 
+/* ============================================
+   METHODOLOGY TEXT
+   ============================================ */
+
 .uf-dashboard__method {
-  margin-bottom: 0;
+  margin: 0;
+
   color: var(--color-text-secondary);
   font-size: var(--font-size-xs);
+  line-height: 1.7;
 }
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Visually hidden, still readable by screen readers */
+
+.uf-dashboard__sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+
+  border: 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 
 @media (max-width: 1100px) {
   .uf-dashboard__columns {
@@ -195,7 +444,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .uf-dashboard__stats {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -205,6 +454,7 @@
     display: grid;
     grid-template-columns: 24px 1fr auto;
     align-items: center;
+    gap: 12px;
   }
 
   .uf-stat strong {
@@ -216,34 +466,57 @@
   }
 
   .uf-dashboard {
-    gap: 20px;
+    gap: 22px;
   }
 }
 
-.uf-dashboard__focus-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 36px;
-  padding: 8px 12px;
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-md);
-  background: var(--color-primary);
-  color: var(--color-text-inverse);
-  text-decoration: none;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
+@media (max-width: 500px) {
+  .uf-dashboard__date {
+    width: 100%;
+  }
+
+  .uf-task-row {
+    padding: 14px;
+  }
+
+  .uf-task-row__actions {
+    align-items: stretch;
+  }
+
+  .uf-dashboard__reorder {
+    flex-shrink: 0;
+  }
+
+  .uf-dashboard__focus-link {
+    flex: 1;
+  }
+
+  .uf-task-row__actions > .uf-button {
+    width: 100%;
+  }
 }
 
-.uf-dashboard__focus-link:hover {
-  background: var(--color-primary-hover);
+@media (max-width: 360px) {
+  .uf-task-row__actions {
+    flex-direction: column;
+  }
+
+  .uf-dashboard__reorder {
+    justify-content: flex-start;
+  }
+
+  .uf-dashboard__focus-link {
+    width: 100%;
+  }
 }
 
-.uf-dashboard__focus-link:active {
-  background: var(--color-primary-active);
-}
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
 
-.uf-dashboard__focus-link:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
+@media (prefers-reduced-motion: reduce) {
+  .uf-dashboard__reorder-button,
+  .uf-dashboard__focus-link {
+    transition: none;
+  }
 }
