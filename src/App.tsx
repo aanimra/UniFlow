@@ -1,89 +1,82 @@
 
-import { useState } from 'react';
-import { Button } from './components/ui/Button/Button';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+} from 'react-router-dom';
+
+import { StudyProvider } from './context/StudyContext';
+import { AppLayout } from './components/layout/AppLayout';
+import { TodayPage } from './pages/TodayPage';
+import { PlaceholderPage } from './pages/PlaceholderPage';
+import { SubjectsPage } from './pages/SubjectsPage';
 
 function App() {
-  const [message, setMessage] = useState('');
-
   return (
-    <main
-      style={{
-        maxWidth: 'var(--content-max-width)',
-        margin: '0 auto',
-        padding: 'var(--space-8)',
-      }}
-    >
-      <span
-        style={{
-          display: 'inline-block',
-          padding: 'var(--space-2) var(--space-4)',
-          background: 'var(--color-primary-soft)',
-          color: 'var(--color-primary-active)',
-          borderRadius: 'var(--radius-full)',
-          fontWeight: 600,
-          marginBottom: 'var(--space-6)',
-        }}
-      >
-        UniFlow · Student Planner
-      </span>
+    <StudyProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<TodayPage />} />
 
-      <h1>Навчання без хаосу.</h1>
+            <Route
+                path="subjects"
+                element={<SubjectsPage />}
+            />
 
-      <p style={{ color: 'var(--color-text-secondary)' }}>
-        Організовуй предмети, завдання, дедлайни
-        та час для зосередженої роботи.
-      </p>
+            <Route
+              path="tasks"
+              element={
+                <PlaceholderPage
+                  title="Мої завдання"
+                  description="Створення, редагування та відстеження завдань."
+                />
+              }
+            />
 
-      <section
-        style={{
-          background: 'var(--color-surface)',
-          border: '1px solid var(--color-border)',
-          borderRadius: 'var(--radius-lg)',
-          padding: 'var(--space-6)',
-          boxShadow: 'var(--shadow-sm)',
-          marginTop: 'var(--space-8)',
-        }}
-      >
-        <h2>Твій навчальний простір</h2>
+            <Route
+              path="week"
+              element={
+                <PlaceholderPage
+                  title="Мій тиждень"
+                  description="Календар навчального навантаження."
+                />
+              }
+            />
 
-        <p>
-          Це перший інтерактивний компонент UniFlow.
-        </p>
+            <Route
+              path="focus"
+              element={
+                <PlaceholderPage
+                  title="Режим концентрації"
+                  description="Таймер для зосередженої роботи над завданнями."
+                />
+              }
+            />
 
-        <div
-          style={{
-            display: 'flex',
-            gap: 'var(--space-3)',
-            flexWrap: 'wrap',
-          }}
-        >
-          <Button
-            onClick={() => setMessage('Кнопка працює!')}
-          >
-            Додати завдання
-          </Button>
+            <Route
+              path="progress"
+              element={
+                <PlaceholderPage
+                  title="Мій прогрес"
+                  description="Статистика виконаних і запланованих завдань."
+                />
+              }
+            />
 
-          <Button
-            variant="outline"
-            onClick={() => setMessage('Дію скасовано')}
-          >
-            Скасувати
-          </Button>
-        </div>
-
-        {message && (
-          <p
-            role="status"
-            style={{
-              marginTop: 'var(--space-4)',
-              color: 'var(--color-success)',
-            }}
-          >
-            {message}
-          </p>
-        )}
-      </section>
-    </main>
+            <Route
+              path="*"
+              element={
+                <PlaceholderPage
+                  title="Сторінку не знайдено"
+                  description="Перевір адресу або повернися на головну."
+                />
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </StudyProvider>
   );
 }
 
