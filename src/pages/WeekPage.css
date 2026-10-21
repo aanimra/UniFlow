@@ -1,0 +1,532 @@
+/* ============================================
+   UNIFLOW — WEEK CALENDAR
+   ============================================ */
+
+.uf-week {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-width: 0;
+}
+
+/* PAGE HEADER */
+
+.uf-week__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.uf-week__heading h1 {
+  margin-bottom: 8px;
+}
+
+.uf-week__eyebrow {
+  margin-bottom: 8px;
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.uf-week__subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.uf-week__tasks-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-primary-active);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.uf-week__tasks-link:hover {
+  background: var(--color-primary-soft);
+}
+
+/* STATISTICS */
+
+.uf-week__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.uf-week__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.uf-week__stat svg {
+  color: var(--color-primary);
+}
+
+.uf-week__stat span {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.uf-week__stat strong {
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+/* CALENDAR NAVIGATION */
+
+.uf-week__calendar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.uf-week__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.uf-week__toolbar h2 {
+  margin-bottom: 6px;
+  font-size: var(--font-size-xl);
+}
+
+.uf-week__range {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.uf-week__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.uf-week__controls .uf-button {
+  white-space: nowrap;
+}
+
+/* OVERLOAD WARNING */
+
+.uf-week__warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  background: var(--color-error-soft);
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.uf-week__warning svg {
+  flex-shrink: 0;
+}
+
+/* SEVEN-DAY CALENDAR */
+
+.uf-week__calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 10px;
+}
+
+.uf-week__day {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 250px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.uf-week__day--today {
+  border-color: var(--color-primary);
+}
+
+.uf-week__day--selected {
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.uf-week__day--overloaded {
+  background: var(--color-error-soft);
+}
+
+.uf-week__day-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  min-height: 84px;
+  padding: 12px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.uf-week__day-button:hover {
+  background: var(--color-primary-soft);
+}
+
+.uf-week__day-button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+}
+
+.uf-week__day--selected .uf-week__day-button {
+  background: var(--color-primary-soft);
+}
+
+.uf-week__day-name {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.uf-week__day-number {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.uf-week__today-label {
+  color: var(--color-primary-active);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* TASKS INSIDE CALENDAR DAYS */
+
+.uf-week__day-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 8px;
+}
+
+.uf-week__empty-day {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+.uf-week__mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.uf-week__mini-task {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+  padding: 8px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+
+.uf-week__subject-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 4px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.uf-week__mini-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.uf-week__mini-title {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.uf-week__mini-task--done .uf-week__mini-title {
+  color: var(--color-text-secondary);
+  text-decoration: line-through;
+}
+
+.uf-week__mini-time {
+  color: var(--color-text-secondary);
+  font-size: 10px;
+}
+
+.uf-week__day-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 9px 8px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 10px;
+}
+
+/* SELECTED DAY */
+
+.uf-week__details {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.uf-week__details-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.uf-week__details-heading h2 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+}
+
+.uf-week__details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* TASK CARDS */
+
+.uf-week__task-card > .uf-card__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.uf-week__task-main {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+  gap: 14px;
+}
+
+.uf-week__task-color {
+  width: 6px;
+  min-height: 55px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+}
+
+.uf-week__task-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.uf-week__task-info h3 {
+  margin-bottom: 6px;
+  font-size: var(--font-size-base);
+  overflow-wrap: anywhere;
+}
+
+.uf-week__completed-title {
+  color: var(--color-text-secondary);
+  text-decoration: line-through;
+}
+
+.uf-week__subject-name {
+  margin-bottom: 12px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.uf-week__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.uf-week__metadata {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+.uf-week__metadata span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* EMPTY STATE */
+
+.uf-week__empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px 20px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.uf-week__empty svg {
+  color: var(--color-primary);
+}
+
+.uf-week__empty h3,
+.uf-week__empty p {
+  margin: 0;
+}
+
+.uf-week__empty p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.uf-week__empty a {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+/* WORKLOAD EXPLANATION */
+
+.uf-week__explanation {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-primary-soft);
+}
+
+.uf-week__explanation h2 {
+  margin-bottom: 10px;
+  color: var(--color-primary-active);
+  font-size: var(--font-size-base);
+}
+
+.uf-week__explanation p {
+  margin-bottom: 10px;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+}
+
+.uf-week__explanation p:last-child {
+  margin-bottom: 0;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 1350px) {
+  .uf-week__calendar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .uf-week__calendar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .uf-week__stat strong {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 650px) {
+  .uf-week {
+    gap: 22px;
+  }
+
+  .uf-week__heading {
+    align-items: flex-start;
+  }
+
+  .uf-week__stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .uf-week__stat {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: center;
+  }
+
+  .uf-week__task-card > .uf-card__body {
+    align-items: stretch;
+  }
+
+  .uf-week__task-card .uf-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .uf-week__calendar {
+    grid-template-columns: 1fr;
+  }
+
+  .uf-week__day {
+    min-height: 140px;
+  }
+
+  .uf-week__day-button {
+    flex-direction: row;
+    min-height: 54px;
+    gap: 10px;
+  }
+
+  .uf-week__day-content {
+    padding: 12px;
+  }
+
+  .uf-week__mini-title {
+    font-size: var(--font-size-sm);
+  }
+
+  .uf-week__tasks-link {
+    width: 100%;
+  }
+}

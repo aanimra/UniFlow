@@ -6,6 +6,7 @@ import type {
   Semester,
   Subject,
   StudyTask,
+  FocusSession,
 } from '../types';
 
 import {
@@ -22,6 +23,7 @@ interface SavedStudyData {
   semesters: Semester[];
   subjects: Subject[];
   tasks: StudyTask[];
+  focusSessions: FocusSession[];
 }
 
 function readInitialData(): SavedStudyData {
@@ -45,6 +47,11 @@ function readInitialData(): SavedStudyData {
           semesters: parsed.semesters as Semester[],
           subjects: parsed.subjects as Subject[],
           tasks: parsed.tasks as StudyTask[],
+          focusSessions:
+            'focusSessions' in parsed &&
+            Array.isArray(parsed.focusSessions)
+              ? (parsed.focusSessions as FocusSession[])
+              : [],
         };
       }
     }
@@ -56,6 +63,7 @@ function readInitialData(): SavedStudyData {
     semesters: initialSemesters,
     subjects: initialSubjects,
     tasks: initialTasks,
+    focusSessions: [],
   };
 }
 
@@ -78,11 +86,16 @@ export function StudyProvider({
     initialData.tasks
   );
 
+  const [focusSessions, setFocusSessions] = useState<
+    FocusSession[]
+  >(initialData.focusSessions);
+
   useEffect(() => {
     const data: SavedStudyData = {
       semesters,
       subjects,
       tasks,
+      focusSessions,
     };
 
     try {
@@ -93,7 +106,7 @@ export function StudyProvider({
     } catch (error) {
       console.error('Помилка збереження даних:', error);
     }
-  }, [semesters, subjects, tasks]);
+  }, [semesters, subjects, tasks, focusSessions]);
 
   function addSemester(semester: Semester) {
     setSemesters((previous) => [...previous, semester]);
@@ -125,7 +138,9 @@ export function StudyProvider({
     );
 
     setTasks((previous) =>
-      previous.filter((task) => !subjectIds.has(task.subjectId))
+      previous.filter(
+        (task) => !subjectIds.has(task.subjectId)
+      )
     );
   }
 
@@ -189,12 +204,20 @@ export function StudyProvider({
     );
   }
 
+  function addFocusSession(session: FocusSession) {
+    setFocusSessions((previous) => [
+      ...previous,
+      session,
+    ]);
+  }
+
   return (
     <StudyContext.Provider
       value={{
         semesters,
         subjects,
         tasks,
+        focusSessions,
         addSemester,
         updateSemester,
         deleteSemester,
@@ -205,6 +228,7 @@ export function StudyProvider({
         updateTask,
         toggleTask,
         deleteTask,
+        addFocusSession,
       }}
     >
       {children}

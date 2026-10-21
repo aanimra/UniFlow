@@ -5,12 +5,14 @@ import type {
   Semester,
   Subject,
   StudyTask,
+  FocusSession,
 } from '../types';
 
 export interface StudyContextValue {
   semesters: Semester[];
   subjects: Subject[];
   tasks: StudyTask[];
+  focusSessions: FocusSession[];
 
   addSemester: (semester: Semester) => void;
   updateSemester: (semester: Semester) => void;
@@ -24,6 +26,8 @@ export interface StudyContextValue {
   updateTask: (task: StudyTask) => void;
   toggleTask: (id: string) => void;
   deleteTask: (id: string) => void;
+
+  addFocusSession: (session: FocusSession) => void;
 }
 
 export const StudyContext =

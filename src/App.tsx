@@ -11,6 +11,8 @@ import { TodayPage } from './pages/TodayPage';
 import { PlaceholderPage } from './pages/PlaceholderPage';
 import { SubjectsPage } from './pages/SubjectsPage';
 import { TasksPage } from './pages/TasksPage';
+import { WeekPage } from './pages/WeekPage';
+import { FocusPage } from './pages/FocusPage';
 
 function App() {
   return (
@@ -31,23 +33,13 @@ function App() {
             />
 
             <Route
-              path="week"
-              element={
-                <PlaceholderPage
-                  title="Мій тиждень"
-                  description="Календар навчального навантаження."
-                />
-              }
+                path="week"
+                element={<WeekPage />}
             />
 
             <Route
-              path="focus"
-              element={
-                <PlaceholderPage
-                  title="Режим концентрації"
-                  description="Таймер для зосередженої роботи над завданнями."
-                />
-              }
+                path="focus"
+                element={<FocusPage/>}
             />
 
             <Route

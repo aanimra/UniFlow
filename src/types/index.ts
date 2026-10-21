@@ -18,17 +18,34 @@ export interface Subject {
 }
 
 
+
 export interface StudyTask {
   id: string;
   subjectId: string;
   title: string;
   description?: string;
+
   deadline: string;
+  scheduledDate?: string;
   scheduledTime?: string;
+
   priority: Priority;
   difficulty?: 'easy' | 'medium' | 'hard';
   estimatedMinutes?: number;
+
   completed: boolean;
   createdAt: string;
   completedAt?: string;
+}
+
+export interface FocusSession {
+  id: string;
+  taskId: string;
+  taskTitle: string;
+  subjectId: string;
+  subjectName: string;
+  startedAt: string;
+  endedAt: string;
+  durationSeconds: number;
+  plannedSeconds: number;
 }

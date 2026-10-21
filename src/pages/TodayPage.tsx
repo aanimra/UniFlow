@@ -7,6 +7,7 @@ import { toLocalDate } from '../data/initialData';
 import { Button } from '../components/ui/Button/Button';
 import { Badge } from '../components/ui/Badge/Badge';
 import { Card } from '../components/ui/Card/Card';
+import { Link } from 'react-router-dom';
 
 import type { Priority, StudyTask } from '../types';
 
@@ -209,6 +210,13 @@ export function TodayPage() {
                         </span>
                       </div>
                     </div>
+                        
+                    <Link
+                        to={`/focus?task=${encodeURIComponent(task.id)}`}
+                        className="uf-dashboard__focus-link"
+                        >
+                        Почати фокус
+                    </Link>
 
                     <Button
                       variant="secondary"
