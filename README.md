@@ -79,9 +79,9 @@
 | ------------------------------------ | ------------------------------------------- |
 | ![Tasks](docs/screenshots/tasks.png) | ![Week Calendar](docs/screenshots/week.png) |
 
-| Focus Mode                                | Progress                                   |
-| ----------------------------------------- | ------------------------------------------ |
-| ![Focus Mode](docs/screenshots/focus.png) | ![Progress](docs/screenshots/progress.png) |
+| Focus Mode                                  | Progress                                   |
+| ------------------------------------------- | ------------------------------------------ |
+| ![Focus Mode](docs/screenshots/focus_0.png) | ![Progress](docs/screenshots/progress.png) |
 
 ## Технологічний стек
 
