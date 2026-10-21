@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>UniFlow — UI/UX Moodboard</title>
+    <style>
+      @page {
+        size: A3 landscape;
+        margin: 12mm;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, "Segoe UI", sans-serif;
+        margin: 0;
+        background: #f7f8fc;
+        color: #202039;
+      }
+      main {
+        max-width: 1500px;
+        margin: auto;
+        padding: 32px;
+      }
+      header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 22px;
+      }
+      .eyebrow {
+        color: #5946c8;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        font-weight: 800;
+      }
+      h1 {
+        font-size: 38px;
+        letter-spacing: -0.04em;
+        margin: 7px 0;
+      }
+      header p {
+        color: #58586e;
+        margin: 0;
+        font-size: 14px;
+      }
+      .brand {
+        border: 1px solid #d9dce8;
+        border-radius: 14px;
+        padding: 14px 18px;
+        background: white;
+        font-weight: 800;
+        color: #5946c8;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .tile {
+        background: white;
+        border: 1px solid #d9dce8;
+        border-radius: 18px;
+        overflow: hidden;
+        break-inside: avoid;
+        box-shadow: 0 8px 20px rgba(25, 24, 61, 0.04);
+      }
+      .image {
+        height: 190px;
+        background: #eae7f7;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .num {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #5946c8;
+        color: white;
+        border-radius: 7px;
+        padding: 6px 9px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .body {
+        padding: 15px;
+      }
+      .area {
+        color: #5946c8;
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 0.06em;
+      }
+      h2 {
+        font-size: 16px;
+        margin: 7px 0 9px;
+      }
+      p {
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 8px 0;
+        color: #505068;
+      }
+      p b {
+        color: #202039;
+      }
+      a {
+        font-size: 12px;
+        color: #4937b0;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 20px;
+        align-items: center;
+      }
+      .palette {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+      }
+      .swatch {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: #58586e;
+      }
+      .dot {
+        height: 19px;
+        width: 19px;
+        border-radius: 5px;
+        border: 1px solid #d9dce8;
+      }
+      .note {
+        font-size: 11px;
+        color: #58586e;
+        max-width: 520px;
+      }
+      @media (max-width: 1000px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 620px) {
+        main {
+          padding: 16px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        header {
+          display: block;
+        }
+        .bottom {
+          display: block;
+        }
+        .palette {
+          flex-wrap: wrap;
+          margin-bottom: 10px;
+        }
+      }
+      @media print {
+        body {
+          background: white;
+        }
+        main {
+          padding: 0;
+        }
+        .grid {
+          gap: 10px;
+        }
+        .image {
+          height: 150px;
+        }
+        .body {
+          padding: 11px;
+        }
+        h2 {
+          font-size: 14px;
+        }
+        p {
+          font-size: 10.5px;
+        }
+        .bottom {
+          margin-top: 12px;
+        }
+        .tile {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <div class="eyebrow">ПЗ2 · UI/UX ДОСЛІДЖЕННЯ</div>
+          <h1>UniFlow / Moodboard</h1>
+          <p>
+            8 реальних інтерфейсів · інсайти для студентського планувальника
+          </p>
+        </div>
+        <div class="brand">▣ UniFlow</div>
+      </header>
+      <div class="grid">
+        <article class="tile">
+          <div class="image">
+            <img
+              src="https://images.ctfassets.net/lzny33ho1g45/6AceeoOQiu37yj75NGl9Na/959df7813ab0d934d1cbbd1c452b73b7/trello-vs-todoist-image10.png?w=1400"
+              alt="Реальний скриншот Todoist — Today"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            /><span class="num">01</span>
+          </div>
+          <div class="body">
+            <span class="area">Мій день / списки завдань</span>
+            <h2>Todoist — Today</h2>
+            <p>
+              <b>Спостереження:</b> Чітка структура завдань, дати й позначки
+              виконання.
+            </p>
+            <p>
+              <b>Для UniFlow:</b> У Today: швидкий огляд найближчих задач,
+              пріоритетів і статусів.
+            </p>
+            <a
+              href="https://zapier.com/blog/trello-vs-todoist/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Відкрити джерело ↗</a
+            >
+          </div>
+        </article>
+        <article class="tile">
+          <div class="image">
+            <img
+              src="https://blaze.today/images/posts/mystudylife.webp"
+              alt="Реальний скриншот MyStudyLife — Dashboard"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            /><span class="num">02</span>
+          </div>
+          <div class="body">
+            <span class="area">Навчальний планувальник</span>
+            <h2>MyStudyLife — Dashboard</h2>
+            <p>
+              <b>Спостереження:</b> Предмети, навчальний розклад та завдання в
+              одному огляді.
+            </p>
+            <p>
+              <b>Для UniFlow:</b> Обʼєднання предметів, задач та дедлайнів у
+              студентському контексті.
+            </p>
+            <a
+              href="https://blaze.today/blog/best-study-apps/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Відкрити джерело ↗</a
+            >
+          </div>
+        </article>
+        <article class="tile">
+          <div class="image">
+            <img
+              src="https://website-assets.productive.io/uploads/2024/06/notion-calendar.webp"
+              alt="Реальний скриншот Notion Calendar — Week"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            /><span class="num">03</span>
+          </div>
+          <div class="body">
+            <span class="area">Тижневе планування</span>
+            <h2>Notion Calendar — Week</h2>
+            <p>
+              <b>Спостереження:</b> Часова сітка, події з кольоровим кодуванням
+              і перемикання тижня.
+            </p>
+            <p>
+              <b>Для UniFlow:</b> У Week: групування задач за датою, кольори
+              предметів, навігація.
+            </p>
+            <a
+              href="https://productive.io/blog/notion-vs-obsidian/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Відкрити джерело ↗</a
+            >
+          </div>
+        </article>
+        <article class="tile">
+          <div class="image">
+            <img
+              src="https://d107mjio2rjf74.cloudfront.net/beta-sites/res/features/tick/mobile/pomo.png"
+              alt="Реальний скриншот TickTick — Focus"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            /><span class="num">04</span>
+          </div>
+          <div class="body">
+            <span class="area">Таймер концентрації</span>
+            <h2>TickTick — Focus</h2>
+            <p>
+              <b>Спостереження:</b> Великий часовий індикатор та мінімум
+              сторонніх елементів.
+            </p>
+            <p>
+              <b>Для UniFlow:</b> У Focus: помітний таймер, прогрес і зрозумілі
+              кнопки керування.
+            </p>
+            <a
+              href="https://beta.ticktick.com/features"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Відкрити джерело ↗</a
+            >
+          </div>
+        </article>
+        <article class="tile">
+          <div class="image">
+            <img
+              src="https://www.isjw.uk/images/todo2.png"
+              alt="Реальний скриншот Microsoft To Do — My Day"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            /><span class="num">05</span>
+          </div>
+          <div class="body">
+            <span class="area">Щоденна пріоритизація</span>
+            <h2>Microsoft To Do — My Day</h2>
+            <p>
+              <b>Спостереження:</b> Окремий список дня, легке додавання та
+              завершення задач.
+            </p>
+            <p>
+              <b>Для UniFlow:</b> У Focus Today: невеликий керований список
+              пріоритетних справ.
+            </p>
+            <a
+              href="https://www.isjw.uk/post/software/microsoft-to-do/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Відкрити джерело ↗</a
+            >
+          </div>
+        </article>
+        <article class="tile">
+          <div class="image">
+            <img
+              src="https://assets.efficient.app/2d33ad5c265c6961bc5db8ef16027da8e777099c7a17d6dbdd2e2a4e0fadb928.png"
+              alt="Реальний скриншот Trello — Board"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            /><span class="num">06</span>
+          </div>
+          <div class="body">
+            <span class="area">Стани й візуальні картки</span>
+            <h2>Trello — Board</h2>
+            <p>
+              <b>Спостереження:</b> Відокремлення станів роботи та добре помітні
+              картки.
+            </p>
+            <p>
+              <b>Для UniFlow:</b> У Tasks: контрастні статуси й доступні дії
+              редагування/завершення.
+            </p>
+            <a
+              href="https://efficient.app/apps/trello"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Відкрити джерело ↗</a
+            >
+          </div>
+        </article>
+        <article class="tile">
+          <div class="image">
+            <img
+              src="https://www.notion.com/_next/image?q=75&amp;url=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fpublic.notion-static.com%2Ftemplate%2Fd672aef6-84d1-4eaa-bea1-2a3d2c2dc39f%2F1765994864548%2Fdesktop.jpg&amp;w=3840"
+              alt="Реальний скриншот Notion — Projects"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            /><span class="num">07</span>
+          </div>
+          <div class="body">
+            <span class="area">Статистика і прогрес</span>
+            <h2>Notion — Projects</h2>
+            <p>
+              <b>Спостереження:</b> Прогрес-бари, відсотки виконання та
+              компактні підсумки.
+            </p>
+            <p>
+              <b>Для UniFlow:</b> У Progress: показники за предметами з
+              числовими підписами.
+            </p>
+            <a
+              href="https://www.notion.com/templates/freelance-os-dashboard"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Відкрити джерело ↗</a
+            >
+          </div>
+        </article>
+        <article class="tile">
+          <div class="image">
+            <img
+              src="https://res.cloudinary.com/imagist/image/fetch/q_auto%2Cf_auto%2Cc_scale%2Cw_2624/https%3A%2F%2Fget.todoist.help%2Fhc%2Farticle_attachments%2F14415823294364"
+              alt="Реальний скриншот Todoist — Upcoming"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            /><span class="num">08</span>
+          </div>
+          <div class="body">
+            <span class="area">Завдання й календар</span>
+            <h2>Todoist — Upcoming</h2>
+            <p>
+              <b>Спостереження:</b> Список проєктів поряд із календарем і
+              кольоровими подіями.
+            </p>
+            <p>
+              <b>Для UniFlow:</b> У Tasks/Week: зв’язок дедлайну, планування та
+              назви задачі.
+            </p>
+            <a
+              href="https://todoist.com/help/articles/use-calendar-with-todoist-rCqwLCt3G"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Відкрити джерело ↗</a
+            >
+          </div>
+        </article>
+      </div>
+      <div class="bottom">
+        <div class="palette">
+          <strong style="font-size: 12px">Палітра UniFlow:</strong
+          ><span class="swatch"
+            ><i class="dot" style="background: #5946c8"></i>#5946C8</span
+          ><span class="swatch"
+            ><i class="dot" style="background: #f7f8fc"></i>#F7F8FC</span
+          ><span class="swatch"
+            ><i class="dot" style="background: #202039"></i>#202039</span
+          ><span class="swatch"
+            ><i class="dot" style="background: #19734b"></i>#19734B</span
+          ><span class="swatch"
+            ><i class="dot" style="background: #b42335"></i>#B42335</span
+          >
+        </div>
+        <p class="note">
+          Зображення завантажуються з їхніх вебджерел. Для автономного звіту
+          збережи скриншоти локально. Це референси UX, а не заявка на авторство
+          дизайну інших продуктів.
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

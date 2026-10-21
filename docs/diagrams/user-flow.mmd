@@ -1,0 +1,65 @@
+
+flowchart TD
+    START(["Користувач відкриває UniFlow"])
+
+    START --> TODAY["Today Dashboard"]
+
+    TODAY --> CHECK_SEM{"Є семестр<br/>і предмет?"}
+
+    CHECK_SEM -->|Ні| SUBJECTS["Перейти до Subjects"]
+    CHECK_SEM -->|Так| CHECK_TASK{"Є потрібне завдання?"}
+
+    SUBJECTS --> CREATE_SEM["Створити семестр"]
+    CREATE_SEM --> VALID_SEM{"Дані семестру<br/>коректні?"}
+
+    VALID_SEM -->|Ні| SEM_ERROR["Показати помилки форми"]
+    SEM_ERROR --> CREATE_SEM
+
+    VALID_SEM -->|Так| CREATE_SUB["Додати предмет"]
+    CREATE_SUB --> VALID_SUB{"Предмет<br/>коректний?"}
+
+    VALID_SUB -->|Ні| SUB_ERROR["Показати помилку"]
+    SUB_ERROR --> CREATE_SUB
+
+    VALID_SUB -->|Так| CHECK_TASK
+
+    CHECK_TASK -->|Ні| TASKS["Перейти до Tasks"]
+    CHECK_TASK -->|Так| TODAY_TASK["Переглянути задачу в Today"]
+
+    TASKS --> CREATE_TASK["Заповнити форму завдання"]
+    CREATE_TASK --> VALID_TASK{"Дані завдання<br/>коректні?"}
+
+    VALID_TASK -->|Ні| TASK_ERROR["Вивести повідомлення про помилки"]
+    TASK_ERROR --> CREATE_TASK
+
+    VALID_TASK -->|Так| SAVE_TASK["Зберегти завдання"]
+    SAVE_TASK --> TODAY_TASK
+
+    TODAY_TASK --> WEEK_CHOICE{"Потрібно запланувати<br/>дату роботи?"}
+
+    WEEK_CHOICE -->|Так| EDIT_PLAN["Вказати scheduledDate / Time у Tasks"]
+    EDIT_PLAN --> WEEK["Переглянути Week Calendar"]
+
+    WEEK_CHOICE -->|Ні| FOCUS_CHOICE{"Почати<br/>концентрацію?"}
+    WEEK --> FOCUS_CHOICE
+
+    FOCUS_CHOICE -->|Ні| TODAY
+    FOCUS_CHOICE -->|Так| FOCUS["Відкрити Focus Mode"]
+
+    FOCUS --> TIMER["Обрати тривалість і запустити таймер"]
+    TIMER --> PAUSE{"Потрібна пауза?"}
+
+    PAUSE -->|Так| PAUSED["Призупинити сесію"]
+    PAUSED --> RESUME{"Продовжити чи скасувати?"}
+
+    RESUME -->|Продовжити| TIMER
+    RESUME -->|Скасувати| TODAY
+
+    PAUSE -->|Ні| FINISH["Завершити та зберегти сесію"]
+    FINISH --> COMPLETE{"Завдання виконано?"}
+
+    COMPLETE -->|Ні| TODAY
+    COMPLETE -->|Так| MARK["Позначити виконаним"]
+
+    MARK --> PROGRESS["Переглянути Progress"]
+    PROGRESS --> END(["Сценарій завершено"])
