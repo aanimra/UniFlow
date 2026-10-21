@@ -13,6 +13,7 @@ import { SubjectsPage } from './pages/SubjectsPage';
 import { TasksPage } from './pages/TasksPage';
 import { WeekPage } from './pages/WeekPage';
 import { FocusPage } from './pages/FocusPage';
+import { ProgressPage } from './pages/ProgressPage';
 
 function App() {
   return (
@@ -43,13 +44,8 @@ function App() {
             />
 
             <Route
-              path="progress"
-              element={
-                <PlaceholderPage
-                  title="Мій прогрес"
-                  description="Статистика виконаних і запланованих завдань."
-                />
-              }
+                path="progress"
+                element={<ProgressPage />}
             />
 
             <Route
