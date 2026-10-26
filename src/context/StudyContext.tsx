@@ -204,6 +204,41 @@ export function StudyProvider({
     );
   }
 
+  // Undo snapshots are restored by ID, without overwriting newer records.
+  function restoreDeletedTask(task: StudyTask): boolean {
+    if (!subjects.some((subject) => subject.id === task.subjectId)) return false;
+    setTasks((previous) => previous.some((item) => item.id === task.id)
+      ? previous : [...previous, task]);
+    return true;
+  }
+
+  function restoreDeletedSubject(subject: Subject, deletedTasks: StudyTask[]): boolean {
+    if (!semesters.some((semester) => semester.id === subject.semesterId)) return false;
+    setSubjects((previous) => previous.some((item) => item.id === subject.id)
+      ? previous : [...previous, subject]);
+    const ownedTasks = deletedTasks.filter((task) => task.subjectId === subject.id);
+    setTasks((previous) => {
+      const existing = new Set(previous.map((task) => task.id));
+      return [...previous, ...ownedTasks.filter((task) => !existing.has(task.id))];
+    });
+    return true;
+  }
+
+  function restoreDeletedSemester(semester: Semester, deletedSubjects: Subject[], deletedTasks: StudyTask[]) {
+    setSemesters((previous) => previous.some((item) => item.id === semester.id)
+      ? previous : [...previous, semester]);
+    const ownedSubjects = deletedSubjects.filter((subject) => subject.semesterId === semester.id);
+    setSubjects((previous) => {
+      const existing = new Set(previous.map((subject) => subject.id));
+      return [...previous, ...ownedSubjects.filter((subject) => !existing.has(subject.id))];
+    });
+    const ownedSubjectIds = new Set(ownedSubjects.map((subject) => subject.id));
+    setTasks((previous) => {
+      const existing = new Set(previous.map((task) => task.id));
+      return [...previous, ...deletedTasks.filter((task) => ownedSubjectIds.has(task.subjectId) && !existing.has(task.id))];
+    });
+  }
+
   function addFocusSession(session: FocusSession) {
     setFocusSessions((previous) => [
       ...previous,
@@ -221,13 +256,16 @@ export function StudyProvider({
         addSemester,
         updateSemester,
         deleteSemester,
+        restoreDeletedSemester,
         addSubject,
         updateSubject,
         deleteSubject,
+        restoreDeletedSubject,
         addTask,
         updateTask,
         toggleTask,
         deleteTask,
+        restoreDeletedTask,
         addFocusSession,
       }}
     >

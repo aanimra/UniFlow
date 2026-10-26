@@ -59,9 +59,11 @@ export function SubjectsPage() {
     addSemester,
     updateSemester,
     deleteSemester,
+    restoreDeletedSemester,
     addSubject,
     updateSubject,
     deleteSubject,
+    restoreDeletedSubject,
   } = useStudy();
 
   const [selectedSemesterId, setSelectedSemesterId] =
@@ -185,13 +187,20 @@ export function SubjectsPage() {
       `Видалити семестр «${semester.name}»?\n\n` +
       `Буде також видалено ${linkedSubjects.length} предметів ` +
       `і ${linkedTasks.length} завдань.\n\n` +
-      'Цю дію неможливо скасувати.'
+      'Після видалення дані можна відновити протягом 10 секунд.'
     );
 
     if (!confirmed) return;
 
     deleteSemester(semester.id);
-    notify({ type: 'success', title: 'Семестр видалено', description: `«${semester.name}» та пов’язані дані видалено.` });
+    notify({
+      type: 'success', title: 'Семестр видалено',
+      description: `«${semester.name}» та пов’язані дані видалено.`, durationMs: 10000,
+      action: { label: 'Відновити', onClick: () => {
+        restoreDeletedSemester(semester, linkedSubjects, linkedTasks);
+        setSelectedSemesterId(semester.id);
+      } },
+    });
     setSelectedSemesterId('');
     setSemesterFormOpen(false);
     setSubjectFormOpen(false);
@@ -276,13 +285,20 @@ export function SubjectsPage() {
     const confirmed = window.confirm(
       `Видалити предмет «${subject.name}»?\n\n` +
       `Також буде видалено ${linkedTasks.length} завдань.\n` +
-      'Цю дію неможливо скасувати.'
+      'Після видалення дані можна відновити протягом 10 секунд.'
     );
 
     if (!confirmed) return;
 
     deleteSubject(subject.id);
-    notify({ type: 'success', title: 'Предмет видалено', description: `«${subject.name}» та пов’язані завдання видалено.` });
+    notify({
+      type: 'success', title: 'Предмет видалено',
+      description: `«${subject.name}» та пов’язані завдання видалено.`, durationMs: 10000,
+      action: { label: 'Відновити', onClick: () => {
+        const restored = restoreDeletedSubject(subject, linkedTasks);
+        if (!restored) notify({ type: 'error', title: 'Не вдалося відновити предмет', description: 'Семестр видалено або предмет вже існує.' });
+      } },
+    });
     setSubjectFormOpen(false);
   }
 

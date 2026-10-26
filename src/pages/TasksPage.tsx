@@ -138,6 +138,7 @@ export function TasksPage() {
     updateTask,
     toggleTask,
     deleteTask,
+    restoreDeletedTask,
   } = useStudy();
 
   // ==========================================
@@ -504,7 +505,7 @@ export function TasksPage() {
   function removeTask(task: StudyTask) {
     const confirmed = window.confirm(
       `Видалити завдання «${task.title}»?\n\n` +
-      'Цю дію неможливо скасувати.'
+      'Після видалення його можна відновити протягом 10 секунд.'
     );
 
     if (!confirmed) {
@@ -512,7 +513,14 @@ export function TasksPage() {
     }
 
     deleteTask(task.id);
-    notify({ type: 'success', title: 'Завдання видалено', description: `«${task.title}» видалено.` });
+    notify({
+      type: 'success', title: 'Завдання видалено',
+      description: `«${task.title}» видалено.`, durationMs: 10000,
+      action: { label: 'Відновити', onClick: () => {
+        const restored = restoreDeletedTask(task);
+        if (!restored) notify({ type: 'error', title: 'Не вдалося відновити завдання', description: 'Предмет видалено або завдання вже існує.' });
+      } },
+    });
 
     if (editingTaskId === task.id) {
       closeForm();

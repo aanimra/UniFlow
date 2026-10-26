@@ -6,6 +6,8 @@ export interface ToastMessage {
   type: ToastType;
   title: string;
   description?: string;
+  action?: { label: string; onClick: () => void };
+  durationMs?: number;
 }
 
 export interface ToastContextValue {
