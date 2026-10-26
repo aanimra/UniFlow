@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 
 import { useStudy } from '../hooks/useStudy';
+import { useToast } from '../hooks/useToast';
 import { Button } from '../components/ui/Button/Button';
 import { Card } from '../components/ui/Card/Card';
 import { Input } from '../components/ui/Input/Input';
@@ -50,6 +51,7 @@ function formatDate(value: string) {
 }
 
 export function SubjectsPage() {
+  const { notify } = useToast();
   const {
     semesters,
     subjects,
@@ -146,6 +148,7 @@ export function SubjectsPage() {
         startDate: semesterDraft.startDate,
         endDate: semesterDraft.endDate,
       });
+      notify({ type: 'success', title: 'Семестр оновлено', description: `«${name}»: зміни збережено.` });
     } else {
       const id = crypto.randomUUID();
 
@@ -157,6 +160,7 @@ export function SubjectsPage() {
       });
 
       setSelectedSemesterId(id);
+      notify({ type: 'success', title: 'Семестр створено', description: `«${name}» додано.` });
     }
 
     setSemesterFormOpen(false);
@@ -187,6 +191,7 @@ export function SubjectsPage() {
     if (!confirmed) return;
 
     deleteSemester(semester.id);
+    notify({ type: 'success', title: 'Семестр видалено', description: `«${semester.name}» та пов’язані дані видалено.` });
     setSelectedSemesterId('');
     setSemesterFormOpen(false);
     setSubjectFormOpen(false);
@@ -252,8 +257,10 @@ export function SubjectsPage() {
 
     if (editingSubjectId) {
       updateSubject(subject);
+      notify({ type: 'success', title: 'Предмет оновлено', description: `«${name}»: зміни збережено.` });
     } else {
       addSubject(subject);
+      notify({ type: 'success', title: 'Предмет створено', description: `«${name}» додано до семестру.` });
     }
 
     setSubjectFormOpen(false);
@@ -275,6 +282,7 @@ export function SubjectsPage() {
     if (!confirmed) return;
 
     deleteSubject(subject.id);
+    notify({ type: 'success', title: 'Предмет видалено', description: `«${subject.name}» та пов’язані завдання видалено.` });
     setSubjectFormOpen(false);
   }
 

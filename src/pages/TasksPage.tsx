@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 
 import { useStudy } from '../hooks/useStudy';
+import { useToast } from '../hooks/useToast.ts';
 import { toLocalDate } from '../data/initialData';
 
 import { Button } from '../components/ui/Button/Button';
@@ -128,6 +129,7 @@ function isValidDate(value: string): boolean {
 // ============================================
 
 export function TasksPage() {
+  const { notify } = useToast();
   const {
     semesters,
     subjects,
@@ -485,8 +487,10 @@ export function TasksPage() {
     // 10. Create or update
     if (existingTask) {
       updateTask(task);
+      notify({ type: 'success', title: 'Зміни збережено', description: `Завдання «${title}» оновлено.` });
     } else {
       addTask(task);
+      notify({ type: 'success', title: 'Завдання створено', description: `«${title}» додано до списку.` });
     }
 
     // 11. Close form
@@ -508,6 +512,7 @@ export function TasksPage() {
     }
 
     deleteTask(task.id);
+    notify({ type: 'success', title: 'Завдання видалено', description: `«${task.title}» видалено.` });
 
     if (editingTaskId === task.id) {
       closeForm();

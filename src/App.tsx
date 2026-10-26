@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 
 import { StudyProvider } from './context/StudyContext';
+import { ToastProvider } from './context/ToastProvider';
+
 import { AppLayout } from './components/layout/AppLayout';
 import { TodayPage } from './pages/TodayPage';
 import { PlaceholderPage } from './pages/PlaceholderPage';
@@ -18,48 +20,50 @@ import { ProgressPage } from './pages/ProgressPage';
 function App() {
   return (
     <StudyProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<TodayPage />} />
+      <ToastProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<TodayPage />} />
 
-            <Route
+              <Route
                 path="subjects"
                 element={<SubjectsPage />}
-            />
+              />
 
-            <Route
+              <Route
                 path="tasks"
                 element={<TasksPage />}
-            />
+              />
 
-            <Route
+              <Route
                 path="week"
                 element={<WeekPage />}
-            />
+              />
 
-            <Route
+              <Route
                 path="focus"
-                element={<FocusPage/>}
-            />
+                element={<FocusPage />}
+              />
 
-            <Route
+              <Route
                 path="progress"
                 element={<ProgressPage />}
-            />
+              />
 
-            <Route
-              path="*"
-              element={
-                <PlaceholderPage
-                  title="Сторінку не знайдено"
-                  description="Перевір адресу або повернися на головну."
-                />
-              }
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+              <Route
+                path="*"
+                element={
+                  <PlaceholderPage
+                    title="Сторінку не знайдено"
+                    description="Перевір адресу або повернися на головну."
+                  />
+                }
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ToastProvider>
     </StudyProvider>
   );
 }
