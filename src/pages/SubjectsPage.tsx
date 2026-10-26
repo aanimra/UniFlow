@@ -50,6 +50,14 @@ function formatDate(value: string) {
   );
 }
 
+function normalizeSubjectName(value: string): string {
+  return value
+    .normalize('NFC')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .toLocaleLowerCase('uk-UA');
+}
+
 export function SubjectsPage() {
   const { notify } = useToast();
   const {
@@ -240,19 +248,21 @@ export function SubjectsPage() {
       return;
     }
 
+
+    const normalizedName = normalizeSubjectName(name);
+
     const duplicate = subjects.some(
-      (subject) =>
+    (subject) =>
         subject.semesterId === activeSemesterId &&
         subject.id !== editingSubjectId &&
-        subject.name.toLocaleLowerCase('uk-UA') ===
-          name.toLocaleLowerCase('uk-UA')
+        normalizeSubjectName(subject.name) === normalizedName
     );
 
     if (duplicate) {
-      setSubjectError(
+    setSubjectError(
         'Предмет із такою назвою вже існує в цьому семестрі.'
-      );
-      return;
+    );
+    return;
     }
 
     const subject: Subject = {
