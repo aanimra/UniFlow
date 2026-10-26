@@ -1,14 +1,13 @@
-
 import type { HTMLAttributes, ReactNode } from 'react';
 import './Card.css';
 
 export type CardVariant = 'default' | 'outlined' | 'soft';
 
-export interface CardProps
-  extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   title?: string;
   description?: string;
   variant?: CardVariant;
+  headingLevel?: 2 | 3 | 4;
   children?: ReactNode;
   footer?: ReactNode;
 }
@@ -17,11 +16,14 @@ export function Card({
   title,
   description,
   variant = 'default',
+  headingLevel = 3,
   children,
   footer,
   className = '',
   ...rest
 }: CardProps) {
+  const Heading = `h${headingLevel}` as const;
+
   return (
     <div
       {...rest}
@@ -34,7 +36,7 @@ export function Card({
       {(title || description) && (
         <div className="uf-card__header">
           {title && (
-            <h3 className="uf-card__title">{title}</h3>
+            <Heading className="uf-card__title">{title}</Heading>
           )}
           {description && (
             <p className="uf-card__description">

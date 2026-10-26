@@ -522,6 +522,7 @@ export function TodayPage() {
         <section>
           <Card
             title="Зосередься сьогодні"
+            headingLevel={2}
             description={
               'Три пріоритетні завдання. ' +
               'Ти можеш змінити порядок виконання.'
@@ -685,7 +686,7 @@ export function TodayPage() {
                               toggleTask(task.id)
                             }
                             aria-label={
-                              `Позначити виконаним: ${task.title}`
+                              `Виконано: ${task.title}`
                             }
                           >
                             Виконано
@@ -705,6 +706,7 @@ export function TodayPage() {
         <section>
           <Card
             title="Найближчі дедлайни"
+            headingLevel={2}
             description={
               'Наступні завдання за датою виконання.'
             }
